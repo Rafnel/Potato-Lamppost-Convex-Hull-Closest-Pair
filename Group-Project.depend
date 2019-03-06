@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1446667744 source:c:\users\zacsh\desktop\algorithms group project\group-project\main.cpp
+	<iostream>
+
+1551907539 source:c:\users\zacsh\desktop\algorithms group project\group-project\color_rgb.cpp
+	"color_rgb.h"
+
+1551907539 c:\users\zacsh\desktop\algorithms group project\group-project\color_rgb.h
+
