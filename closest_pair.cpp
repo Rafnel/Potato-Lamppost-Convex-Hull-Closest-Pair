@@ -1,3 +1,15 @@
+/*
+* Author: Zac Steudel, Chase Manseth, Gennie Mansi, Reece Kemball-Cook, Bob Rein
+* Assignment Title: CSI 3344 Spring 2019 Group Project
+* Assignment Description: This program uses C++ and the SDL to graphically
+*   represent the runtime characteristics of the brute force closest pair,
+*   D/C closest pair, brute force convex hull, and D/C convex hull algorithms
+* Due Date: 04/02/2019
+* Date Created: 03/06/2019
+* Date Last Modified: 04/01/2019
+ */
+
+
 #include "closest_pair.h"
 
 double distance(point p1, point p2){
@@ -13,7 +25,7 @@ bool xComparator(point p1, point p2){
 
 double brute_ClosestPair(vector<point> points){
     //brute force: find the distance between every point and every other point.
-    //O(n^2)
+    //O(n^2)+
     double minDist;
     bool distInitialized = false;
 
@@ -24,8 +36,8 @@ double brute_ClosestPair(vector<point> points){
             if(points[i].getX() != points[j].getX() ||
                points[i].getY() != points[j].getY()){
                 if(!distInitialized){
-                     //if this is the first set of valid points, set the
-                     //initial minDist to this distance
+                    //if this is the first set of valid points, set the
+                    //initial minDist to this distance
                     minDist = distance(points[i], points[j]);
                     distInitialized = true;
                 }
@@ -99,7 +111,7 @@ double divconq_ClosestPair(vector<point> points){
     //meaning this is O(n). (Packing Theorem)
     for(int i = 0; i < candidates.size(); i++){
         for(int j = i + 1; j < candidates.size() &&
-        candidates[j].getY() - candidates[i].getY() <= minDist; j++){
+                           candidates[j].getY() - candidates[i].getY() <= minDist; j++){
             minDist = min(minDist, distance(candidates[i], candidates[j]));
         }
     }
