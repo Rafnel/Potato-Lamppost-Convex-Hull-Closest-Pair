@@ -92,3 +92,67 @@ vector<point> * brute_ConvexHull(vector<point> points) {
     return convexHullPoints;
 }
 
+//lowest y | DONE
+//sort by angles
+//remove all with same angle except longest
+//if < 3 points then cannot make hull
+//create stack
+//push first 3
+//remove all that dont make left
+//done
+
+// Supporting functions
+point p0;
+int compare(point *p1, point *p2){
+   int x1,y1,x2,y2,angle1, angle2;
+   x1 = p1.x - p0.x;
+   x2 = p2.x - p0.x;
+   y1 = p1.y - p0.y;
+   y2 = p2.y - p0.y;
+   angle1 = atan(y1/x1);
+   angle2 = atan(y2/x2);
+   if (angle1 == angle2){
+     return 0;
+   }
+   if (angle1 < angle2){
+     return -1;
+   }
+   if (angle1 > angle2) {
+       return 1;
+   }
+}
+
+
+
+vector<point> * divideAndConquer_ConvexHull(vector<point> points){
+    vector <point> * convexHullPoints = new vector<point>();
+
+    // finding bottom most point
+    int minY = points[0].getY();
+    int minNdx = 0;
+    for(int i = 1; i < points.size()) {
+        int pointY = points[i].getY();
+        int pointX = points[i].getX();
+
+        if(pointY < minY || (pointY == minY &&
+            pointX < points[minNdx].getX())) {
+                minY = pointY;
+                minNdx = i;
+            }
+    }
+
+    swap(points[0], points[minNdx]);
+    p0 = points[0];
+
+    sort(points.begin(),points.end(),compare);
+
+    /*for (int i = 0; i < points.size()-1; i++){
+        if (compare(points[i],points[i+1]) == 0){
+            //a^2 + b^2 = c^2
+            l1 =
+            if ()
+        }
+    }*/
+
+    return convexHullPoints;
+}

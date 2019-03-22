@@ -36,6 +36,9 @@ using namespace std;
 vector<point> * brute_ConvexHull(vector<point> points);
 
 
+vector<point> * divideAndConquer_ConvexHull(vector<point> points);
+
+
 /*
  * description: determines if two points have the same coordinates
  * return: bool
