@@ -78,6 +78,8 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
                     distChanged = false;
 
                     g.update();
+
+                    this_thread::sleep_for(chrono::milliseconds(1000));
                 }
             }
         }
