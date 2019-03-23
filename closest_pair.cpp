@@ -29,8 +29,10 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
 
     //graphics part 1: plot all the points.
     plotPoints(g, points);
+    g.update();
 
     double minDist;
+    bool distChanged = false;
     bool distInitialized = false;
 
     for(int i = 0; i < points.size(); i++){
@@ -38,7 +40,8 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
         color_rgb c(255, 0, 0);
         points[i].setColor(c);
         drawRect(g, points[i]);
-        this_thread::sleep_for(chrono::milliseconds(1000 / points.size()));
+        g.update();
+        this_thread::sleep_for(chrono::milliseconds(10000 / points.size()));
 
         for(int j = i + 1; j < points.size(); j++){
             //check that these aren't the same points, in case
@@ -50,9 +53,30 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
                     //initial minDist to this distance
                     minDist = distance(points[i], points[j]);
                     distInitialized = true;
+                    distChanged = true;
+                }
+                if(distance(points[i], points[j]) < minDist){
+                    minDist = distance(points[i], points[j]);
+                    distChanged = true;
                 }
 
-                minDist = min(minDist, distance(points[i], points[j]));
+                //graphics step 3: draw the line between the current closest
+                //pair.
+                if(distChanged){
+                    cout << minDist << endl;
+                    g.clear();
+                    plotPoints(g, points);
+
+                    point p1(points[i].getX(), g.getRow() - points[i].getY());
+                    point p2(points[j].getX(), g.getRow() - points[j].getY());
+                    line closest(p1, p2);
+                    closest.setColor(points[j].getColor());
+                    closest.draw(g);
+
+                    distChanged = false;
+
+                    g.update();
+                }
             }
         }
 
@@ -60,6 +84,7 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
         c.setR(0);
         points[i].setColor(c);
         drawRect(g, points[i]);
+        g.update();
     }
 
     return minDist;
@@ -154,8 +179,6 @@ void drawRect(SDL_Plotter &g, point p){
            }
         }
     }
-
-    g.update();
 }
 
 

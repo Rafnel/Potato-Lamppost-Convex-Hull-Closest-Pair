@@ -384,7 +384,7 @@
 
 1553297755 c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\color_rgb.h
 
-1553297755 source:c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\point.cpp
+1553308773 source:c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\point.cpp
 	"point.h"
 
 1553297755 c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\point.h
@@ -401,16 +401,19 @@
 	<string.h>
 	<map>
 
-1553308727 source:c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\closest_pair.cpp
+1553311307 source:c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\closest_pair.cpp
 	"closest_pair.h"
 
-1553308717 c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\closest_pair.h
+1553310591 c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\closest_pair.h
 	<vector>
 	"point.h"
 	<cmath>
+	"line.h"
 	<algorithm>
 	<thread>
 	<chrono>
+	<cstdlib>
+	<time.h>
 
 1553298574 source:c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\convexhull.cpp
 	"convexHull.h"
@@ -436,9 +439,19 @@
 1553297755 source:c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\line.cpp
 	"line.h"
 
-1553308689 source:c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\main.cpp
+1553312485 source:c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\main.cpp
 	<iostream>
 	"SDL_Plotter.h"
 	"closest_pair.h"
+	"font.h"
 	"convexHull.h"
+
+1553312565 c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\font.h
+	"SDL_Plotter.h"
+	<iostream>
+	<fstream>
+	"SDL_Plotter.h"
+	<sstream>
+	<string>
+	<cstdlib>
 

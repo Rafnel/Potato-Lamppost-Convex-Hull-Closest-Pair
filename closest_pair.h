@@ -15,9 +15,12 @@
 #include <vector>
 #include "point.h"
 #include <cmath>
+#include "line.h"
 #include <algorithm>
 #include <thread>
 #include <chrono>
+#include <cstdlib>
+#include <time.h>
 
 using namespace std;
 

@@ -13,6 +13,7 @@
 #include <iostream>
 #include "SDL_Plotter.h"
 #include "closest_pair.h"
+#include "font.h"
 #include "convexHull.h"
 
 const int ROW_MAX = 500;
@@ -22,26 +23,34 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-
-    //closest pair tester
+    initLetter();
+    initLetter();
     vector<point> points;
-    int x, y;
-    int numPoints;
-    cin >> numPoints;
-    int count = 0;
-
-    while(count < numPoints){
-        cin >> x >> y;
-        point p(x, y);
-        points.push_back(p);
-
-        count++;
-    }
 
     SDL_Plotter g(ROW_MAX, COL_MAX);
-    cout << brute_ClosestPair(g, points) << endl;
-
+    g.update();
     while(!g.getQuit()){
+        if(g.kbhit()){
+            g.clear();
+            points.clear();
+            drawLetter(g, 1, 1, r);
+            drawLetter(g, 2, 1, u);
+            drawLetter(g, 3, 1, n);
+            drawLetter(g, 4, 1, n);
+            drawLetter(g, 5, 1, i);
+            drawLetter(g, 6, 1, n);
+            drawLetter(g, 7, 1, (letter) 6);
+            srand(time(NULL));
+            for(int i = 0; i < 50; i++){
+                int x = rand() % 1000;
+                int y = rand() % 450;
+                point p(x, y);
+
+                points.push_back(p);
+            }
+
+            cout << brute_ClosestPair(g, points) << endl;
+        }
     }
 
     /* *************************** divconq tests *******************
