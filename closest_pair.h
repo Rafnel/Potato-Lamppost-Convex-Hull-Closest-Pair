@@ -21,6 +21,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <time.h>
+#include "font.h"
 
 using namespace std;
 
@@ -82,5 +83,9 @@ bool xComparator(point p1, point p2);
 void plotPoints(SDL_Plotter &g, vector<point> points);
 
 void drawRect(SDL_Plotter &g, point p);
+
+void running(SDL_Plotter &g, bool er);
+
+void finished(SDL_Plotter &g, bool er);
 
 #endif // CLOSEST_PAIR_H_INCLUDED

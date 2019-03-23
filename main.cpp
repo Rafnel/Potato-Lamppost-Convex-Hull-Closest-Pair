@@ -13,7 +13,6 @@
 #include <iostream>
 #include "SDL_Plotter.h"
 #include "closest_pair.h"
-#include "font.h"
 #include "convexHull.h"
 
 const int ROW_MAX = 500;
@@ -23,8 +22,6 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    initLetter();
-    initLetter();
     vector<point> points;
 
     SDL_Plotter g(ROW_MAX, COL_MAX);
@@ -33,13 +30,7 @@ int main(int argc, char* argv[])
         if(g.kbhit()){
             g.clear();
             points.clear();
-            drawLetter(g, 1, 1, r);
-            drawLetter(g, 2, 1, u);
-            drawLetter(g, 3, 1, n);
-            drawLetter(g, 4, 1, n);
-            drawLetter(g, 5, 1, i);
-            drawLetter(g, 6, 1, n);
-            drawLetter(g, 7, 1, (letter) 6);
+
             srand(time(NULL));
             for(int i = 0; i < 50; i++){
                 int x = rand() % 1000;

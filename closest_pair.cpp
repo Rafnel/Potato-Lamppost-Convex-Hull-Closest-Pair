@@ -29,6 +29,7 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
 
     //graphics part 1: plot all the points.
     plotPoints(g, points);
+    running(g, false);
     g.update();
 
     double minDist;
@@ -66,6 +67,7 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
                     cout << minDist << endl;
                     g.clear();
                     plotPoints(g, points);
+                    running(g, false);
 
                     point p1(points[i].getX(), g.getRow() - points[i].getY());
                     point p2(points[j].getX(), g.getRow() - points[j].getY());
@@ -87,6 +89,9 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
         g.update();
     }
 
+    running(g, true);
+    finished(g, false);
+    g.update();
     return minDist;
 }
 
@@ -179,6 +184,42 @@ void drawRect(SDL_Plotter &g, point p){
            }
         }
     }
+}
+
+void running(SDL_Plotter &pl, bool er){
+    fontClass fo;
+    fo.initLetter();
+    if(!er){
+        fo.drawLetter(pl, 1, 1, r);
+        fo.drawLetter(pl, 2, 1, u);
+        fo.drawLetter(pl, 3, 1, n);
+        fo.drawLetter(pl, 4, 1, n);
+        fo.drawLetter(pl, 5, 1, i);
+        fo.drawLetter(pl, 6, 1, n);
+        fo.drawLetter(pl, 7, 1, g);
+    }
+    else{
+        fo.eraseLetter(pl, 1, 1, r);
+        fo.eraseLetter(pl, 2, 1, u);
+        fo.eraseLetter(pl, 3, 1, n);
+        fo.eraseLetter(pl, 4, 1, n);
+        fo.eraseLetter(pl, 5, 1, i);
+        fo.eraseLetter(pl, 6, 1, n);
+        fo.eraseLetter(pl, 7, 1, g);
+    }
+}
+
+void finished(SDL_Plotter &pl, bool er){
+    fontClass fo;
+    fo.initLetter();
+    fo.drawLetter(pl, 1, 1, f);
+    fo.drawLetter(pl, 2, 1, i);
+    fo.drawLetter(pl, 3, 1, n);
+    fo.drawLetter(pl, 4, 1, i);
+    fo.drawLetter(pl, 5, 1, s);
+    fo.drawLetter(pl, 6, 1, h);
+    fo.drawLetter(pl, 7, 1, e);
+    fo.drawLetter(pl, 8, 1, d);
 }
 
 
