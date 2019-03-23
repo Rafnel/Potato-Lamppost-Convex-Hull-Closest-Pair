@@ -23,13 +23,23 @@ bool xComparator(point p1, point p2){
     return (p1.getX() < p2.getX());
 }
 
-double brute_ClosestPair(vector<point> points){
+double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
     //brute force: find the distance between every point and every other point.
-    //O(n^2)+
+    //O(n^2)
+
+    //graphics part 1: plot all the points.
+    plotPoints(g, points);
+
     double minDist;
     bool distInitialized = false;
 
     for(int i = 0; i < points.size(); i++){
+        //graphics step 2: highlight the currently-considered point.
+        color_rgb c(255, 0, 0);
+        points[i].setColor(c);
+        drawRect(g, points[i]);
+        this_thread::sleep_for(chrono::milliseconds(1000 / points.size()));
+
         for(int j = i + 1; j < points.size(); j++){
             //check that these aren't the same points, in case
             //there are duplicates for some reason.
@@ -45,12 +55,17 @@ double brute_ClosestPair(vector<point> points){
                 minDist = min(minDist, distance(points[i], points[j]));
             }
         }
+
+        //2.5: set color back to black after finishing.
+        c.setR(0);
+        points[i].setColor(c);
+        drawRect(g, points[i]);
     }
 
     return minDist;
 }
 
-double divconq_ClosestPair(vector<point> points){
+double divconq_ClosestPair(SDL_Plotter &g, vector<point> points){
     //divide and conquer closest pair algorithm. Runs in O(nlog(n)).
 
     //handle an edge case where the user sends in an empty list or a list
@@ -68,7 +83,7 @@ double divconq_ClosestPair(vector<point> points){
         //we can't let divide and conquer tackle a vector of 3 points because
         //it will split into a vector of 1 point, which the algorithm won't
         //handle correctly.
-        return brute_ClosestPair(points);
+        return brute_ClosestPair(g, points);
     }
 
     /* Division part of the algorithm: sort the vector by increasing x-values
@@ -81,8 +96,8 @@ double divconq_ClosestPair(vector<point> points){
     vector<point> firstHalf(points.begin(), points.begin() + median);
     vector<point> secondHalf(points.begin() + median, points.end());
 
-    double dist1 = divconq_ClosestPair(firstHalf);
-    double dist2 = divconq_ClosestPair(secondHalf);
+    double dist1 = divconq_ClosestPair(g, firstHalf);
+    double dist2 = divconq_ClosestPair(g, secondHalf);
 
     double minDist = min(dist1, dist2);
 
@@ -119,5 +134,28 @@ double divconq_ClosestPair(vector<point> points){
     return minDist;
 }
 
+
+void plotPoints(SDL_Plotter &g, vector<point> points){
+    for(int i = 0; i < points.size(); i++){
+        if(points[i].getX() > 0 && points[i].getX() < g.getCol() &&
+           points[i].getY() > 0 && g.getRow() - points[i].getY() > 0){
+            drawRect(g, points[i]);
+        }
+    }
+}
+
+void drawRect(SDL_Plotter &g, point p){
+    for(int x = p.getX() - 2; x < p.getX() + 2; x++){
+        for(int y = p.getY() - 2; y < p.getY() + 2; y++){
+            if(x > 0 && x < g.getCol() && y > 0 && g.getRow() - y > 0){
+                int yVal = g.getRow() - y;
+                g.plotPixel(x, yVal, p.getColor().getR(), p.getColor().getB(),
+                            p.getColor().getG());
+           }
+        }
+    }
+
+    g.update();
+}
 
 

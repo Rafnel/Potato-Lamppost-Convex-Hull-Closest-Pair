@@ -7,6 +7,10 @@ point::point(){
 point::point(int x, int y){
     this->x = x;
     this->y = y;
+
+    this->color.setR(0);
+    this->color.setB(0);
+    this->color.setG(0);
 }
 
 point::point(const point& p){

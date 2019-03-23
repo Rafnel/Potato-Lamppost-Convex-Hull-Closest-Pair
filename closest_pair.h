@@ -16,6 +16,8 @@
 #include "point.h"
 #include <cmath>
 #include <algorithm>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
@@ -39,7 +41,7 @@ double distance(point p1, point p2);
  *      returned; the parameter, points, is unchanged after the function call
  *
 */
-double brute_ClosestPair(vector<point> points);
+double brute_ClosestPair(SDL_Plotter &g, vector<point> points);
 
 /*
  * description: finds closest distance between any two points belonging
@@ -50,7 +52,7 @@ double brute_ClosestPair(vector<point> points);
  *      returned; the parameter, points, is unchanged after the function call
  *
 */
-double divconq_ClosestPair(vector<point> points);
+double divconq_ClosestPair(SDL_Plotter &g, vector<point> points);
 
 /*
  * description: compares the y coordinates of two points
@@ -73,5 +75,9 @@ bool yComparator(point p1, point p2);
  *
 */
 bool xComparator(point p1, point p2);
+
+void plotPoints(SDL_Plotter &g, vector<point> points);
+
+void drawRect(SDL_Plotter &g, point p);
 
 #endif // CLOSEST_PAIR_H_INCLUDED

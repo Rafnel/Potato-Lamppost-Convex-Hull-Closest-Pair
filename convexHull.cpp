@@ -103,12 +103,13 @@ vector<point> * brute_ConvexHull(vector<point> points) {
 
 // Supporting functions
 point p0;
-int compare(point *p1, point *p2){
+//I commented this out since it is giving errors
+/*int compare(point *p1, point *p2){
    int x1,y1,x2,y2,angle1, angle2;
-   x1 = p1.x - p0.x;
-   x2 = p2.x - p0.x;
-   y1 = p1.y - p0.y;
-   y2 = p2.y - p0.y;
+   x1 = p1->getX() - p0->getX();
+   x2 = p2->getX() - p0->getX();
+   y1 = p1->getY() - p0->getY();
+   y2 = p2->getY() - p0->getY();
    angle1 = atan(y1/x1);
    angle2 = atan(y2/x2);
    if (angle1 == angle2){
@@ -120,7 +121,7 @@ int compare(point *p1, point *p2){
    if (angle1 > angle2) {
        return 1;
    }
-}
+}*/
 
 
 
@@ -130,7 +131,7 @@ vector<point> * divideAndConquer_ConvexHull(vector<point> points){
     // finding bottom most point
     int minY = points[0].getY();
     int minNdx = 0;
-    for(int i = 1; i < points.size()) {
+    for(int i = 1; i < points.size(); i++) {
         int pointY = points[i].getY();
         int pointX = points[i].getX();
 
@@ -144,7 +145,7 @@ vector<point> * divideAndConquer_ConvexHull(vector<point> points){
     swap(points[0], points[minNdx]);
     p0 = points[0];
 
-    sort(points.begin(),points.end(),compare);
+    //sort(points.begin(),points.end(),compare);
 
     /*for (int i = 0; i < points.size()-1; i++){
         if (compare(points[i],points[i+1]) == 0){

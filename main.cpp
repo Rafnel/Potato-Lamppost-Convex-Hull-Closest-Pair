@@ -15,10 +15,14 @@
 #include "closest_pair.h"
 #include "convexHull.h"
 
+const int ROW_MAX = 500;
+const int COL_MAX = 1000;
+
 using namespace std;
 
 int main(int argc, char* argv[])
 {
+
     //closest pair tester
     vector<point> points;
     int x, y;
@@ -34,19 +38,20 @@ int main(int argc, char* argv[])
         count++;
     }
 
-    //cout << "Brute Force: " << brute_ClosestPair(points) << endl;
-    //cout << "Div & Conquer: " << divconq_ClosestPair(points) << endl;
+    SDL_Plotter g(ROW_MAX, COL_MAX);
+    cout << brute_ClosestPair(g, points) << endl;
 
+    while(!g.getQuit()){
+    }
 
-
-
+    /* *************************** divconq tests *******************
     vector<point> * convexHull = brute_ConvexHull(points);
 
     cout << "Brute Force Convex Hull Points:" << endl;
     for(int i = 0; i < convexHull->size(); i++){
         convexHull->at(i).display(cout);
         cout << endl;
-    }
+    }*/
 
     return 0;
 }
