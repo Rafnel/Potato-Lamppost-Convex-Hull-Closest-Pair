@@ -99,7 +99,8 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
     return minDist;
 }
 
-double divconq_ClosestPair(SDL_Plotter &g, vector<point> points){
+double divconq_ClosestPair(SDL_Plotter &g, vector<point> points, bool topLevel,
+                           pair<point, point> &best, vector<point> &orig){
     //divide and conquer closest pair algorithm. Runs in O(nlog(n)).
 
     //handle an edge case where the user sends in an empty list or a list
@@ -111,13 +112,59 @@ double divconq_ClosestPair(SDL_Plotter &g, vector<point> points){
     //first, establish a base case: only two points in the vector, so return
     //the distance between those two points.
     if(points.size() == 2){
+        best.first = point(points[0].getX(),
+                           g.getRow() - points[0].getY());
+        best.second = point(points[1].getX(),
+                            g.getRow() - points[1].getY());
         return distance(points[0], points[1]);
     }
     else if(points.size() == 3){
         //we can't let divide and conquer tackle a vector of 3 points because
         //it will split into a vector of 1 point, which the algorithm won't
         //handle correctly.
-        return brute_ClosestPair(g, points);
+        double minDist;
+        bool distChanged = false;
+        bool distInitialized = false;
+
+        for(int i = 0; i < points.size(); i++){
+            for(int j = i + 1; j < points.size(); j++){
+                //check that these aren't the same points, in case
+                //there are duplicates for some reason.
+                if(points[i].getX() != points[j].getX() ||
+                   points[i].getY() != points[j].getY()){
+                    if(!distInitialized){
+                        //if this is the first set of valid points, set the
+                        //initial minDist to this distance
+                        minDist = distance(points[i], points[j]);
+                        distInitialized = true;
+                        distChanged = true;
+                        best.first = point(points[i].getX(),
+                                           g.getRow() - points[i].getY());
+                        best.second = point(points[j].getX(),
+                                            g.getRow() - points[j].getY());
+                    }
+                    if(distance(points[i], points[j]) < minDist){
+                        minDist = distance(points[i], points[j]);
+                        distChanged = true;
+
+                        best.first = point(points[i].getX(),
+                                           g.getRow() - points[i].getY());
+                        best.second = point(points[j].getX(),
+                                            g.getRow() - points[j].getY());
+                    }
+
+                    //graphics step 3: draw the line between the current closest
+                    //pair.
+                    if(distChanged){
+                        cout << minDist << endl;
+
+                        distChanged = false;
+                    }
+                }
+            }
+        }
+
+        return minDist;
     }
 
     /* Division part of the algorithm: sort the vector by increasing x-values
@@ -127,13 +174,65 @@ double divconq_ClosestPair(SDL_Plotter &g, vector<point> points){
     sort(points.begin(), points.end(), xComparator);
     int median = points.size() / 2;
 
+    if(topLevel){
+        orig = points;
+    }
+
+    //step 1 graphics: plot all points.
+    //step 2 graphics: draw median line in buffer zone
+    g.clear();
+    running(g, false);
+    plotPoints(g, orig);
+    point m1(points[median].getX(), 50);
+    point m2(points[median].getX(), g.getRow() - 20);
+    line medLine(m1, m2);
+    medLine.setColor(color_rgb(255, 0, 0));
+    medLine.draw(g);
+
+    //draw median using original point set
+    int medOrig = orig.size() / 2;
+    point mO1(orig[medOrig].getX(), 50);
+    point mO2(orig[medOrig].getX(), g.getRow() - 20);
+    line medOrigLine(mO1, mO2);
+    medOrigLine.draw(g);
+
+    g.update();
+
+
     vector<point> firstHalf(points.begin(), points.begin() + median);
     vector<point> secondHalf(points.begin() + median, points.end());
 
-    double dist1 = divconq_ClosestPair(g, firstHalf);
-    double dist2 = divconq_ClosestPair(g, secondHalf);
+    pair<point, point> left;
+    pair<point, point> right;
 
-    double minDist = min(dist1, dist2);
+    double dist1 = divconq_ClosestPair(g, firstHalf, false, left, orig);
+    double dist2 = divconq_ClosestPair(g, secondHalf, false, right, orig);
+
+    double minDist;
+    if(dist1 < dist2){
+        best = left;
+        minDist = dist1;
+    }
+    else{
+        best = right;
+        minDist = dist2;
+    }
+
+    g.clear();
+    running(g, false);
+    plotPoints(g, orig);
+
+    //draw best from left and right half.
+    line leftBest(left.first, left.second);
+    line rightBest(right.first, right.second);
+
+    leftBest.draw(g);
+    rightBest.draw(g);
+
+    medLine.draw(g);
+    medOrigLine.draw(g);
+    g.update();
+    this_thread::sleep_for(chrono::milliseconds(1000));
 
     /* Now for the hard part: handle the points that could be closest pairs
      * that cross over the dividing line. Any point that is within minDist
@@ -161,8 +260,44 @@ double divconq_ClosestPair(SDL_Plotter &g, vector<point> points){
     for(int i = 0; i < candidates.size(); i++){
         for(int j = i + 1; j < candidates.size() &&
                            candidates[j].getY() - candidates[i].getY() <= minDist; j++){
-            minDist = min(minDist, distance(candidates[i], candidates[j]));
+            if(distance(candidates[i], candidates[j]) < minDist){
+                minDist = distance(candidates[i], candidates[j]);
+                best.first = point(candidates[i].getX(),
+                                   g.getRow() - candidates[i].getY());
+                best.second = point(candidates[j].getX(),
+                                    g.getRow() - candidates[j].getY());
+            }
         }
+    }
+
+    for(int i = 0; i < points.size(); i++){
+        find(orig.begin(), orig.end(), points[i])->setColor(color_rgb(0,0,255));
+    }
+
+    if(topLevel){
+        cout << "fin";
+        g.clear();
+        finished(g, false);
+        plotPoints(g, points);
+
+        line bestie(best.first, best.second);
+        point modP1(bestie.getP1().getX(),
+                 g.getRow() - bestie.getP1().getY());
+        modP1.setColor(color_rgb(255,0,0));
+
+        point modP2(bestie.getP2().getX(),
+                 g.getRow() - bestie.getP2().getY());
+        modP2.setColor(color_rgb(255,0,0));
+
+        drawRect(g, modP1);
+        drawRect(g, modP2);
+
+        bestie.setColor(color_rgb(255,0,0));
+        bestie.draw(g);
+        cout << "best: " << best.first.getX() << " " << best.first.getY() << endl;
+        cout << "best2: " << best.second.getX() << " " << best.second.getY();
+
+        g.update();
     }
 
     return minDist;

@@ -20,6 +20,7 @@
 #include <thread>
 #include <chrono>
 #include <cstdlib>
+#include "convexHull.h"
 #include <time.h>
 #include "font.h"
 
@@ -56,7 +57,8 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points);
  *      returned; the parameter, points, is unchanged after the function call
  *
 */
-double divconq_ClosestPair(SDL_Plotter &g, vector<point> points);
+double divconq_ClosestPair(SDL_Plotter &g, vector<point> points, bool topLevel,
+                           pair<point, point> &best, vector<point> &orig);
 
 /*
  * description: compares the y coordinates of two points

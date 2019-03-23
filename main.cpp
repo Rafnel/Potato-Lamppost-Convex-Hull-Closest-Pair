@@ -62,6 +62,10 @@ int main(int argc, char* argv[])
             if(g.getKey() == 'H'){
                 brute_ConvexHull(points, g);
             }
+            if(g.getKey() == 'C'){
+                pair<point, point> p;
+                divconq_ClosestPair(g, points, true, p, points);
+            }
 
         }
     }
