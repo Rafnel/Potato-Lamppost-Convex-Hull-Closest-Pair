@@ -22,10 +22,25 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    vector<point> points;
 
     SDL_Plotter g(ROW_MAX, COL_MAX);
     g.update();
+
+    //closest pair tester
+    vector<point> points;
+    /*int x, y;
+    int numPoints;
+    cin >> numPoints;
+    int count = 0;
+
+    while(count < numPoints){
+        cin >> x >> y;
+        point p(x, y);
+        points.push_back(p);
+
+        count++;
+    }*/
+
     while(!g.getQuit()){
         if(g.kbhit()){
             g.clear();
@@ -33,16 +48,26 @@ int main(int argc, char* argv[])
 
             srand(time(NULL));
             for(int i = 0; i < 50; i++){
-                int x = rand() % 1000;
-                int y = rand() % 450;
+                int x = (rand() % 980) +10;
+                int y = (rand() % 430) + 20;
                 point p(x, y);
 
                 points.push_back(p);
             }
 
-            cout << brute_ClosestPair(g, points) << endl;
+            // brute force closest pair
+            if(g.getKey() == 'P'){
+                brute_ClosestPair(g, points);
+            }
+            if(g.getKey() == 'H'){
+                brute_ConvexHull(points, g);
+            }
+
         }
     }
+
+
+
 
     /* *************************** divconq tests *******************
     vector<point> * convexHull = brute_ConvexHull(points);

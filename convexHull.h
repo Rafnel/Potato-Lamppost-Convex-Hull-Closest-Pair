@@ -1,3 +1,4 @@
+
 /*
 * Author: Zac Steudel, Chase Manseth, Gennie Mansi, Reece Kemball-Cook, Bob Rein
 * Assignment Title: CSI 3344 Spring 2019 Group Project
@@ -33,7 +34,7 @@ using namespace std;
  *      is returned; the parameter, points, is unchanged after the function call
  *
 */
-vector<point> * brute_ConvexHull(vector<point> points);
+vector<point> * brute_ConvexHull(vector<point> points, SDL_Plotter &g);
 
 
 vector<point> * divideAndConquer_ConvexHull(vector<point> points);

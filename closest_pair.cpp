@@ -38,7 +38,7 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
 
     for(int i = 0; i < points.size(); i++){
         //graphics step 2: highlight the currently-considered point.
-        color_rgb c(255, 0, 0);
+        color_rgb c(31, 0, 234);
         points[i].setColor(c);
         drawRect(g, points[i]);
         g.update();
@@ -86,6 +86,8 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
 
         //2.5: set color back to black after finishing.
         c.setR(0);
+        c.setG(255);
+        c.setB(0);
         points[i].setColor(c);
         drawRect(g, points[i]);
         g.update();
@@ -181,9 +183,9 @@ void drawRect(SDL_Plotter &g, point p){
         for(int y = p.getY() - 2; y < p.getY() + 2; y++){
             if(x > 0 && x < g.getCol() && y > 0 && g.getRow() - y > 0){
                 int yVal = g.getRow() - y;
-                g.plotPixel(x, yVal, p.getColor().getR(), p.getColor().getB(),
-                            p.getColor().getG());
-           }
+                g.plotPixel(x, yVal, p.getColor().getR(), p.getColor().getG(),
+                            p.getColor().getB());
+            }
         }
     }
 }
@@ -223,5 +225,3 @@ void finished(SDL_Plotter &pl, bool er){
     fo.drawLetter(pl, 7, 1, e);
     fo.drawLetter(pl, 8, 1, d);
 }
-
-

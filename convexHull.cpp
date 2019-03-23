@@ -9,13 +9,14 @@
 * Date Last Modified: 04/01/2019
  */
 #include "convexHull.h"
-
+#include "closest_pair.h"
+#include "curve.h"
 
 bool operator==(point p1, point p2){
     return (p1.getY() == p2.getY() && p1.getX() == p2.getX());
 }
 
-vector<point> * brute_ConvexHull(vector<point> points) {
+vector<point> * brute_ConvexHull(vector<point> points, SDL_Plotter& g) {
     //brute force: compute the line segment between every point and check if
     // all other points are on the same side of that line segment; if so, those
     // two points are in the convex hull
@@ -24,9 +25,19 @@ vector<point> * brute_ConvexHull(vector<point> points) {
     vector <point> * convexHullPoints = new vector<point>();
     bool pointsOnSameSide = true;
 
+    // Draw all of the points
+    for(int i = 0; i < points.size(); i++){
+        drawRect(g, points[i]);
+    }
+
+    // Label the top right of the graph with "running" to denote that the
+    // algorithm is still running
+    running(g, false);
+    g.update();
+
+
     for (int i = 0; i < points.size(); i++) {
         for (int j = 0; j < points.size(); j++) {
-
             if ( !((points[i] == points[j])) ) {
 
                 // Compute the line segment for p_i and p_j
@@ -62,6 +73,7 @@ vector<point> * brute_ConvexHull(vector<point> points) {
                     }
                 }
 
+
                 if (pointsOnSameSide) {
                     // If we haven't already identified p_i as a point in the
                     // convexHull, add it to the vector of convexHullPoints
@@ -80,7 +92,18 @@ vector<point> * brute_ConvexHull(vector<point> points) {
 
                         convexHullPoints->push_back(points[j]);
                     }
+                    // Every time we find a pair of points in the convex hull,
+                    // we update our display of what we've found so far
+                    point point1(points[i].getX(), g.getRow()-points[i].getY());
+                    point point2(points[j].getX(), g.getRow()-points[j].getY());
+                    line convexH(point1, point2);
+                    convexH.setColor(color_rgb(0,0,255));
+                    convexH.draw(g);
+                    g.update();
+
+                    this_thread::sleep_for(chrono::milliseconds(500));
                 }
+
 
                 // reset pointsOnSameSide for the next set of points
                 pointsOnSameSide = true;
@@ -89,8 +112,15 @@ vector<point> * brute_ConvexHull(vector<point> points) {
         }
     }
 
+    running(g, true);
+    finished(g, false);
+    g.update();
+
     return convexHullPoints;
 }
+
+
+
 
 //lowest y | DONE
 //sort by angles
@@ -136,10 +166,10 @@ vector<point> * divideAndConquer_ConvexHull(vector<point> points){
         int pointX = points[i].getX();
 
         if(pointY < minY || (pointY == minY &&
-            pointX < points[minNdx].getX())) {
-                minY = pointY;
-                minNdx = i;
-            }
+                             pointX < points[minNdx].getX())) {
+            minY = pointY;
+            minNdx = i;
+        }
     }
 
     swap(points[0], points[minNdx]);

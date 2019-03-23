@@ -1,3 +1,4 @@
+
 /*
  * SDL_Plotter.h
  *
@@ -14,8 +15,8 @@
 //#include <SDL2/SDL_thread.h>
 
 //Windows Library
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_mixer.h>
+#include "i686-w64-mingw32/include/SDL2/SDL.h"
+#include "i686-w64-mingw32/include/SDL2/SDL_mixer.h"
 
 #include <string.h>
 #include <iostream>
