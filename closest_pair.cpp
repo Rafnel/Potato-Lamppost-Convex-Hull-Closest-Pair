@@ -232,7 +232,13 @@ double divconq_ClosestPair(SDL_Plotter &g, vector<point> points, bool topLevel,
     medLine.draw(g);
     medOrigLine.draw(g);
     g.update();
-    this_thread::sleep_for(chrono::milliseconds(1000));
+    if(orig.size() <= 100){
+        this_thread::sleep_for(chrono::milliseconds(750));
+    }
+    else{
+        this_thread::sleep_for(chrono::milliseconds(1500 / orig.size()));
+    }
+
 
     /* Now for the hard part: handle the points that could be closest pairs
      * that cross over the dividing line. Any point that is within minDist
