@@ -120,70 +120,101 @@ vector<point> * brute_ConvexHull(vector<point> points, SDL_Plotter& g) {
 }
 
 
-
-
-//lowest y | DONE
-//sort by angles
-//remove all with same angle except longest
-//if < 3 points then cannot make hull
-//create stack
-//push first 3
-//remove all that dont make left
-//done
-
-// Supporting functions
 point p0;
-//I commented this out since it is giving errors
-/*int compare(point *p1, point *p2){
-   int x1,y1,x2,y2,angle1, angle2;
-   x1 = p1->getX() - p0->getX();
-   x2 = p2->getX() - p0->getX();
-   y1 = p1->getY() - p0->getY();
-   y2 = p2->getY() - p0->getY();
-   angle1 = atan(y1/x1);
-   angle2 = atan(y2/x2);
-   if (angle1 == angle2){
-     return 0;
-   }
-   if (angle1 < angle2){
-     return -1;
-   }
-   if (angle1 > angle2) {
-       return 1;
-   }
-}*/
+bool lessThan(point p1, point p2){
+    if(p1.getX()== p0.getX() && p1.getY()==p0.getY()){
+        return true;
+    }
+    if(p1.getX()== p2.getX() && p1.getY()==p2.getY()){
+        return true;
+    }
+    if(p1.getX()== p2.getX()){
+        return (p1.getY()<p2.getY());
+    }
+    if(p2.getX()== p0.getX() && p2.getY()==p0.getY()){
+        return false;
+    }
+    if (p1.getX()>p0.getX() && p2.getX()<=p0.getX()){
+        return true;
+    }
+    if (p2.getX()>p0.getX() && p1.getX()<=p0.getX()){
+        return false;
+    }
+    return (
+       (double)(p1.getY()-p0.getY())/(double)(p1.getX()-p0.getX())<
+       (double)(p2.getY()-p0.getY())/(double)(p2.getX()-p0.getX())
+       );
+}
+bool isRightHandTurn(point p, point m, point n){
+    double slope1;
 
-
-
+    if (m.getX()==p.getX()){
+        if (m.getY()>p.getY()) {
+            return n.getX()>m.getX();
+        } else{
+            return n.getX()<m.getX();
+        }
+    }
+    if (m.getY()==p.getY()){
+        if (m.getX()>p.getX()) {
+            return n.getY() < m.getY();
+        } else{
+            return n.getY() > m.getY();
+        }
+    }
+    slope1=((double)(p.getY() - m.getY()))/((double)(p.getX() - m.getX()));
+    if (m.getX()>p.getX()) {//0,100 to 100,0 for example
+        return (n.getY() < p.getY() + slope1 * (n.getX() - p.getX()));
+    } else{//100,0 to 0,100  for example
+        return (n.getY() > p.getY() + slope1 * (n.getX() - p.getX()));
+    }
+}
 vector<point> * divideAndConquer_ConvexHull(vector<point> points){
+
     vector <point> * convexHullPoints = new vector<point>();
+    int minY;
+    stack <point> values;
+    point prev,mid,next;
 
-    // finding bottom most point
-    int minY = points[0].getY();
-    int minNdx = 0;
-    for(int i = 1; i < points.size(); i++) {
-        int pointY = points[i].getY();
-        int pointX = points[i].getX();
-
-        if(pointY < minY || (pointY == minY &&
-                             pointX < points[minNdx].getX())) {
-            minY = pointY;
-            minNdx = i;
+    p0=points.at(0);
+    minY=p0.getY();
+    for (int i=0;i<points.size();i++){
+        if(points.at(i).getY()<p0.getY()){
+            minY=points.at(i).getY();
+            p0=points.at(i);
         }
     }
 
-    swap(points[0], points[minNdx]);
-    p0 = points[0];
+    sort(points.begin(),points.end(),lessThan);
 
-    //sort(points.begin(),points.end(),compare);
+    *convexHullPoints=points;
+    if (points.size()<4){
+        return convexHullPoints;
+    }
 
-    /*for (int i = 0; i < points.size()-1; i++){
-        if (compare(points[i],points[i+1]) == 0){
-            //a^2 + b^2 = c^2
-            l1 =
-            if ()
+    prev= points.at(0);
+    mid = points.at(1);
+    values.push(prev);
+    values.push(mid);
+
+    for (int i = 2; i < points.size(); i++){
+        next=points.at(i);
+        while (isRightHandTurn(prev,mid,next)){
+            values.pop();
+            values.pop();
+            mid = prev;
+            prev= values.top();
+            values.push(mid);
         }
-    }*/
+        values.push(points.at(i));
+        prev=mid;
+        mid = values.top();
+    }
 
+    convexHullPoints->clear();
+    while (!values.empty()) {
+       convexHullPoints->push_back(values.top());
+       values.pop();
+    }
     return convexHullPoints;
 }

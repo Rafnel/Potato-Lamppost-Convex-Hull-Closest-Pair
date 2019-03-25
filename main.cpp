@@ -14,6 +14,7 @@
 #include "SDL_Plotter.h"
 #include "closest_pair.h"
 #include "convexHull.h"
+#include <unordered_set>
 
 const int ROW_MAX = 500;
 const int COL_MAX = 1000;
@@ -72,15 +73,40 @@ int main(int argc, char* argv[])
 
 
 
+//unordered_set <int> used;
+//    srand (time(NULL));
+//    int x,y;
+//            for(int i = 0; i < 100; i++){
+//                //x = (rand() % 1000) +1;
+//                do{
+//                    x = (rand() % 1000) +1;
+//                }while(used.find(x) != used.end());
+//                used.insert(x);
+//
+//                y = (rand() % 450) +1;
+//                point p(x, y);
+//
+//                points.push_back(p);
+//            }
+//
+//    vector<point> * convexHull = brute_ConvexHull(points,g);
+//
+//    cout << "Brute Force Convex Hull Points:" << endl;
+//    for(int i = 0; i < convexHull->size(); i++){
+//        convexHull->at(i).display(cout);
+//        cout << endl;
+//    }
+//    cout<<"size= "<<convexHull->size()<<endl;
+//    convexHull = divideAndConquer_ConvexHull(points);
+//
+//    cout << "Divide and Conquer Convex Hull Points:" << endl;
+//    for(int i = 0; i < convexHull->size(); i++){
+//        convexHull->at(i).display(cout);
+//        cout << endl;
+//    }
+//    cout<<"size= "<<convexHull->size()<<endl;
 
-    /* *************************** divconq tests *******************
-    vector<point> * convexHull = brute_ConvexHull(points);
-
-    cout << "Brute Force Convex Hull Points:" << endl;
-    for(int i = 0; i < convexHull->size(); i++){
-        convexHull->at(i).display(cout);
-        cout << endl;
-    }*/
 
     return 0;
 }
+
