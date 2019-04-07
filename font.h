@@ -5,18 +5,22 @@
 #include <fstream>
 #include "SDL_Plotter.h"
 #include <sstream>
+#include "color_rgb.h"
 #include <string>
 #include <cstdlib>
 
-const int CHARCOUNT = 36;
+const int CHARCOUNT = 37;
+const int TOTAL_COLORS = 12;
 const int COLCOUNT = 25;
 const int ROWCOUNT = 25;
 const int NUMCOUNT = 10;
-enum letter{a = 0,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z};
+enum letter{a = 0,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,colon};
 
 
 class fontClass{
 public:
+    color_rgb color;
+    int currentColor;
     char letters[CHARCOUNT][COLCOUNT][ROWCOUNT];
     int numbers[NUMCOUNT][COLCOUNT][ROWCOUNT];
     /*
@@ -53,6 +57,10 @@ public:
     void printNum(SDL_Plotter& g, int c, int r, int num);
 
     void eraseLetter(SDL_Plotter& g, int c, int r, letter ltr);
+
+    void setColor(color_rgb c);
+
+    void nextColor();
 
 };
 
