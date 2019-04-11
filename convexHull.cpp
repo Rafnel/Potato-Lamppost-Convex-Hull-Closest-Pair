@@ -188,7 +188,7 @@ vector<point> * divideAndConquer_ConvexHull(vector<point> points){
         //If 2 of the lowest share the same y then it is determined
         //by the lowest x
         else if (points.at(i).getY() == p0.getY()){
-            if (points.at(i.getX()) < p0.getX()){
+            if (points.at(i).getX() < p0.getX()){
                 minY=points.at(i).getY();
                 p0=points.at(i);
             }
