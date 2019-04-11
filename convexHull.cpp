@@ -176,23 +176,35 @@ vector<point> * divideAndConquer_ConvexHull(vector<point> points){
     stack <point> values;
     point prev,mid,next;
 
+    //Getting lowest leftmost point and setting as p0 and minY
     p0=points.at(0);
     minY=p0.getY();
     for (int i=0;i<points.size();i++){
+        //Getting lowest
         if(points.at(i).getY()<p0.getY()){
             minY=points.at(i).getY();
             p0=points.at(i);
         }
+        //If 2 of the lowest share the same y then it is determined
+        //by the lowest x
+        else if (points.at(i).getY() == p0.getY()){
+            if (points.at(i.getX()) < p0.getX()){
+                minY=points.at(i).getY();
+                p0=points.at(i);
+            }
+        }
     }
 
+    //Sorting points in ascending order
     sort(points.begin(),points.end(),lessThan);
 
+    //Check to see if convex hull is possible on thee points
     *convexHullPoints=points;
     if (points.size()<4){
         return convexHullPoints;
     }
 
-    prev= points.at(0);
+    prev = points.at(0);
     mid = points.at(1);
     values.push(prev);
     values.push(mid);
