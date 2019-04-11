@@ -227,6 +227,17 @@ vector<point> * divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points)
         values.push(points.at(i));
         prev=mid;
         mid = values.top();
+
+        // Every time we find a pair of points in the convex hull,
+        // we update our display of what we've found so far
+        point point1(points[i].getX(), g.getRow()-points[i].getY());
+        point point2(points[j].getX(), g.getRow()-points[j].getY());
+        line convexH(point1, point2);
+        convexH.setColor(color_rgb(0,0,255));
+        convexH.draw(g);
+        g.update();
+
+        this_thread::sleep_for(chrono::milliseconds(500));
     }
 
     convexHullPoints->clear();
