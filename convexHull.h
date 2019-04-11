@@ -38,7 +38,7 @@ using namespace std;
 vector<point> * brute_ConvexHull(vector<point> points, SDL_Plotter &g);
 
 
-vector<point> * divideAndConquer_ConvexHull(vector<point> points);
+vector<point> * divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points);
 
 
 /*

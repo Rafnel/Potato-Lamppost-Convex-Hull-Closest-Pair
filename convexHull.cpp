@@ -169,12 +169,17 @@ bool isRightHandTurn(point p, point m, point n){
         return (n.getY() > p.getY() + slope1 * (n.getX() - p.getX()));
     }
 }
-vector<point> * divideAndConquer_ConvexHull(vector<point> points){
+vector<point> * divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
 
     vector <point> * convexHullPoints = new vector<point>();
     int minY;
     stack <point> values;
     point prev,mid,next;
+
+    //Plotting points
+    plotPoints(g, points);
+    running(g, false);
+    g.update();
 
     //Getting lowest leftmost point and setting as p0 and minY
     p0=points.at(0);
@@ -211,6 +216,7 @@ vector<point> * divideAndConquer_ConvexHull(vector<point> points){
 
     for (int i = 2; i < points.size(); i++){
         next=points.at(i);
+        //Loop to pop right hand turns
         while (isRightHandTurn(prev,mid,next)){
             values.pop();
             values.pop();
