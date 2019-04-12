@@ -122,32 +122,62 @@ vector<point> * brute_ConvexHull(vector<point> points, SDL_Plotter& g) {
 
 point p0;
 bool lessThan(point p1, point p2){
+    //these first two checks are for if one of the points is our p0
     if(p1.getX()== p0.getX() && p1.getY()==p0.getY()){
         return true;
-    }
-    if(p1.getX()== p2.getX() && p1.getY()==p2.getY()){
-        return true;
-    }
-    if(p1.getX()== p2.getX()){
-        return (p1.getY()<p2.getY());
     }
     if(p2.getX()== p0.getX() && p2.getY()==p0.getY()){
         return false;
     }
-    if (p1.getX()>p0.getX() && p2.getX()<=p0.getX()){
+    //If p1 == p2
+    if(p1.getX()== p2.getX() && p1.getY()==p2.getY()){
         return true;
     }
-    if (p2.getX()>p0.getX() && p1.getX()<=p0.getX()){
+    //If on same vertical line
+    if(p1.getX()== p2.getX()){
+      if(p1.getX()>p0.getX()){
+        return (p1.getY()<p2.getY());
+      }else{
+          return (p1.getY()>p2.getY());
+      }
+    }
+    //if on same horizontal line
+    if(p1.getY()== p2.getY()){
+      return (p1.getX()>p2.getX());
+    }
+
+    if (p1.getX()>=p0.getX() && p2.getX()<=p0.getX()){
+        return true;
+    }
+    if (p2.getX()>=p0.getX() && p1.getX()<=p0.getX()){
         return false;
     }
     return (
        (double)(p1.getY()-p0.getY())/(double)(p1.getX()-p0.getX())<
        (double)(p2.getY()-p0.getY())/(double)(p2.getX()-p0.getX())
-       );
+    );
+}
+
+void drawWholeStack(stack <point> values,SDL_Plotter&g,int size){
+
+    while (!values.empty()) {
+       point p1(values.top().getX(),g.getRow() - values.top().getY());
+       values.pop();
+       if(!values.empty()){
+            point p2(values.top().getX(),g.getRow() - values.top().getY());
+            line myline(p1, p2);
+            myline.setColor(color_rgb(0,0,255));
+            myline.draw(g);
+       }
+    }
+    g.update();
+    this_thread::sleep_for(chrono::milliseconds(15000/size));
 }
 bool isRightHandTurn(point p, point m, point n){
-    double slope1;
-
+    double slope1,slope2;
+    if(m.getX()==p.getX() && m.getY()==p.getY()){
+        return true;
+    }
     if (m.getX()==p.getX()){
         if (m.getY()>p.getY()) {
             return n.getX()>m.getX();
@@ -163,6 +193,14 @@ bool isRightHandTurn(point p, point m, point n){
         }
     }
     slope1=((double)(p.getY() - m.getY()))/((double)(p.getX() - m.getX()));
+    slope2=((double)(p.getY() - n.getY()))/((double)(p.getX() - n.getX()));
+    if (abs(slope1-slope2)<0.0000001){
+//        cout<<"small slope"<<endl;
+        return true;
+    }
+    if(n.getY() == p.getY() + slope1 * (n.getX() - p.getX())){
+        return true;
+    }
     if (m.getX()>p.getX()) {//0,100 to 100,0 for example
         return (n.getY() < p.getY() + slope1 * (n.getX() - p.getX()));
     } else{//100,0 to 0,100  for example
@@ -170,7 +208,7 @@ bool isRightHandTurn(point p, point m, point n){
     }
 }
 vector<point> * divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
-
+g.clear();
     vector <point> * convexHullPoints = new vector<point>();
     int minY;
     stack <point> values;
@@ -227,18 +265,17 @@ vector<point> * divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points)
         values.push(points.at(i));
         prev=mid;
         mid = values.top();
-
-        // Every time we find a pair of points in the convex hull,
-        // we update our display of what we've found so far
-        point point1(points[i].getX(), g.getRow()-points[i].getY());
-        point point2(points[j].getX(), g.getRow()-points[j].getY());
-        line convexH(point1, point2);
-        convexH.setColor(color_rgb(0,0,255));
-        convexH.draw(g);
-        g.update();
-
-        this_thread::sleep_for(chrono::milliseconds(500));
+        drawWholeStack(values,g,points.size());//take this line out to remove animation
     }
+    g.clear();
+    plotPoints(g, points);
+    point pFinal(values.top().getX(),g.getRow() - values.top().getY());
+    point pInitial(p0.getX(),g.getRow() - p0.getY());
+    line myline(pInitial, pFinal);
+    myline.setColor(color_rgb(0,0,255));
+    myline.draw(g);
+    drawWholeStack(values,g,points.size());
+
 
     convexHullPoints->clear();
     while (!values.empty()) {
@@ -247,3 +284,4 @@ vector<point> * divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points)
     }
     return convexHullPoints;
 }
+
