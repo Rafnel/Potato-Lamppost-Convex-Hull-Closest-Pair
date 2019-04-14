@@ -1,4 +1,3 @@
-
 /*
 * Author: Zac Steudel, Chase Manseth, Gennie Mansi, Reece Kemball-Cook, Bob Rein
 * Assignment Title: CSI 3344 Spring 2019 Group Project
@@ -16,6 +15,7 @@
 #include <vector>
 #include "point.h"
 #include <cmath>
+#include "closest_pair.h"
 #include <algorithm>
 #include <stack>
 

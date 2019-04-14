@@ -101,7 +101,7 @@ vector<point> * brute_ConvexHull(vector<point> points, SDL_Plotter& g) {
                     convexH.draw(g);
                     g.update();
 
-                    this_thread::sleep_for(chrono::milliseconds(500));
+                    g.Sleep(500);
                 }
 
 
@@ -171,7 +171,7 @@ void drawWholeStack(stack <point> values,SDL_Plotter&g,int size){
        }
     }
     g.update();
-    this_thread::sleep_for(chrono::milliseconds(15000/size));
+    g.Sleep(15000 / size);
 }
 bool isRightHandTurn(point p, point m, point n){
     double slope1,slope2;

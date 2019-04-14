@@ -6,7 +6,7 @@
 *   D/C closest pair, brute force convex hull, and D/C convex hull algorithms
 * Due Date: 04/02/2019
 * Date Created: 03/06/2019
-* Date Last Modified: 04/01/2019
+* Date Last Modified: 04/14/2019
  */
 #include <iostream>
 #include "SDL_Plotter.h"
@@ -27,6 +27,7 @@ void DCCP_option(SDL_Plotter &p1);
 void BFCH_option(SDL_Plotter &p1);
 void secondTitle(SDL_Plotter &p1);
 void displaySizes(SDL_Plotter &p1);
+void drawMenu(SDL_Plotter &g);
 
 int main(int argc, char* argv[])
 {
@@ -35,15 +36,7 @@ int main(int argc, char* argv[])
     g.update();
     vector<point> points;
 
-    //fill the screen with black
-    blackOut(g);
-    BFCP_option(g);
-    BFCH_option(g);
-    DCCP_option(g);
-    DCCH_option(g);
-    titleGroup(g);
-    g.update();
-
+    drawMenu(g);
 
     char op;
     int dataSize;
@@ -68,7 +61,6 @@ int main(int argc, char* argv[])
         if(g.kbhit() && userHit){
             if(g.getKey() == 'A' || g.getKey() == 'B' ||
                g.getKey() == 'C' || g.getKey() == 'D'){
-                cout << "hi" << endl;
                 userHit = false;
 
                 if(g.getKey() == 'A'){
@@ -106,8 +98,15 @@ int main(int argc, char* argv[])
                     divconq_ClosestPair(g, points, true, p, points);
                 }
                 if(op == 'V'){
+                    running(g, false);
                     divideAndConquer_ConvexHull(g,points);
+                    running(g, true);
+                    finished(g, false);
+                    g.update();
                 }
+
+                while(!g.kbhit()){}
+                drawMenu(g);
             }
         }
     }
@@ -376,4 +375,13 @@ void displaySizes(SDL_Plotter &p1){
 	fo.printNum(p1, startX + 17, startY + 2, 0);
 }
 
-
+void drawMenu(SDL_Plotter &g){
+    //fill the screen with black
+    blackOut(g);
+    BFCP_option(g);
+    BFCH_option(g);
+    DCCP_option(g);
+    DCCH_option(g);
+    titleGroup(g);
+    g.update();
+}

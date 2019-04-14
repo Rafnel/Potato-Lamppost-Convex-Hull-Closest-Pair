@@ -30,9 +30,30 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++14" />
 			<Add option="-fexceptions" />
+			<Add directory="C:/Users/steudel.ECS/Desktop/SDL/include" />
 		</Compiler>
+		<Linker>
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer" />
+			<Add directory="C:/Users/steudel.ECS/Desktop/SDL/lib" />
+		</Linker>
+		<Unit filename="SDL_Plotter.h" />
+		<Unit filename="closest_pair.cpp" />
+		<Unit filename="closest_pair.h" />
+		<Unit filename="color_rgb.cpp" />
+		<Unit filename="color_rgb.h" />
+		<Unit filename="convexHull.cpp" />
+		<Unit filename="convexHull.h" />
+		<Unit filename="curve.cpp" />
+		<Unit filename="curve.h" />
+		<Unit filename="font.cpp" />
+		<Unit filename="font.h" />
+		<Unit filename="line.cpp" />
+		<Unit filename="line.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="point.cpp" />
+		<Unit filename="point.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -1,3 +1,13 @@
+/*
+* Author: Zac Steudel, Chase Manseth, Gennie Mansi, Reece Kemball-Cook, Bob Rein
+* Assignment Title: CSI 3344 Spring 2019 Group Project
+* Assignment Description: This program uses C++ and the SDL to graphically
+*   represent the runtime characteristics of the brute force closest pair,
+*   D/C closest pair, brute force convex hull, and D/C convex hull algorithms
+* Due Date: 04/02/2019
+* Date Created: 03/06/2019
+* Date Last Modified: 04/14/2019
+ */
 #ifndef COLOR_RGB_H_INCLUDED
 #define COLOR_RGB_H_INCLUDED
 class color_rgb {

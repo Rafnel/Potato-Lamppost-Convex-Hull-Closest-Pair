@@ -42,7 +42,7 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
         points[i].setColor(c);
         drawRect(g, points[i]);
         g.update();
-        this_thread::sleep_for(chrono::milliseconds(10000 / points.size()));
+        g.Sleep(15000 / points.size());
 
         for(int j = i + 1; j < points.size(); j++){
             //check that these aren't the same points, in case
@@ -64,7 +64,6 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
                 //graphics step 3: draw the line between the current closest
                 //pair.
                 if(distChanged){
-                    cout << minDist << endl;
                     g.clear();
                     plotPoints(g, points);
                     running(g, false);
@@ -79,7 +78,7 @@ double brute_ClosestPair(SDL_Plotter &g, vector<point> points){
 
                     g.update();
 
-                    this_thread::sleep_for(chrono::milliseconds(1000));
+                    g.Sleep(1000);
                 }
             }
         }
@@ -156,7 +155,6 @@ double divconq_ClosestPair(SDL_Plotter &g, vector<point> points, bool topLevel,
                     //graphics step 3: draw the line between the current closest
                     //pair.
                     if(distChanged){
-                        cout << minDist << endl;
 
                         distChanged = false;
                     }
@@ -233,12 +231,11 @@ double divconq_ClosestPair(SDL_Plotter &g, vector<point> points, bool topLevel,
     medOrigLine.draw(g);
     g.update();
     if(orig.size() <= 100){
-        this_thread::sleep_for(chrono::milliseconds(750));
+        g.Sleep(1200);
     }
     else{
-        this_thread::sleep_for(chrono::milliseconds(1500 / orig.size()));
+        g.Sleep(100000 / orig.size());
     }
-
 
     /* Now for the hard part: handle the points that could be closest pairs
      * that cross over the dividing line. Any point that is within minDist
@@ -281,7 +278,6 @@ double divconq_ClosestPair(SDL_Plotter &g, vector<point> points, bool topLevel,
     }
 
     if(topLevel){
-        cout << "fin";
         g.clear();
         finished(g, false);
         plotPoints(g, points);
@@ -300,8 +296,6 @@ double divconq_ClosestPair(SDL_Plotter &g, vector<point> points, bool topLevel,
 
         bestie.setColor(color_rgb(255,0,0));
         bestie.draw(g);
-        cout << "best: " << best.first.getX() << " " << best.first.getY() << endl;
-        cout << "best2: " << best.second.getX() << " " << best.second.getY();
 
         g.update();
     }
