@@ -82,12 +82,47 @@ bool yComparator(point p1, point p2);
 */
 bool xComparator(point p1, point p2);
 
+/*
+ * description: Plots a set of given points
+ * return: none
+ * precondition: The SDL_Plotter object exists
+ * postcondition: The set of points in the points vector is plotted and
+ *    displayed by SDL_Plotter
+ *
+*/
 void plotPoints(SDL_Plotter &g, vector<point> points);
 
+/*
+ * description: Draws a small rectangle (used in helping make individual
+ *    points visible on the SDL_Plotter screen)
+ * return: none
+ * precondition: The SDL_Plotter object exists; p can be drawn in the window
+ * postcondition: A small rectangle is drawn at the coordinate 
+ *    represented by p
+ *
+*/
 void drawRect(SDL_Plotter &g, point p);
 
+/*
+ * description: Displays or erases the word 'running' across the top of 
+ *    the window
+ * return: none
+ * precondition: The SDL_Plotter object exists
+ * postcondition: The word 'running' is displayed across the top of the 
+ *    window; if er = true, then the word 'running' is erased instead
+ *
+*/
 void running(SDL_Plotter &g, bool er);
 
+/*
+ * description: Displays the word 'finished' across the top of 
+ *    the window
+ * return: none
+ * precondition: The SDL_Plotter object exists
+ * postcondition: The word 'running' is displayed across the top of the 
+ *    window; the value of er here does not have any impact on the result
+ *
+*/
 void finished(SDL_Plotter &g, bool er);
 
 #endif // CLOSEST_PAIR_H_INCLUDED
