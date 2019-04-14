@@ -626,10 +626,10 @@
 1554670283 source:c:\users\zacsh\desktop\current group proj\potato-lamppost-convex-hull-closest-pair-master\point.cpp
 	"point.h"
 
-1555277374 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\closest_pair.cpp
+1555280436 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\closest_pair.cpp
 	"closest_pair.h"
 
-1555274366 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\closest_pair.h
+1555280436 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\closest_pair.h
 	<vector>
 	"point.h"
 	<cmath>
@@ -642,14 +642,14 @@
 	<time.h>
 	"font.h"
 
-1555274366 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\point.h
+1555280436 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\point.h
 	"color_rgb.h"
 	"SDL_Plotter.h"
 	<ostream>
 
-1555274366 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\color_rgb.h
+1555280436 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\color_rgb.h
 
-1555274365 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\sdl_plotter.h
+1555280436 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\sdl_plotter.h
 	"SDL2/SDL.h"
 	"SDL2/SDL_mixer.h"
 	<string.h>
@@ -658,10 +658,10 @@
 	<string.h>
 	<map>
 
-1555274366 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\line.h
+1555280436 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\line.h
 	"point.h"
 
-1555276758 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\convexhull.h
+1555280436 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\convexhull.h
 	<vector>
 	"point.h"
 	<cmath>
@@ -669,7 +669,7 @@
 	<algorithm>
 	<stack>
 
-1555274366 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\font.h
+1555280436 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\font.h
 	<iostream>
 	<fstream>
 	"SDL_Plotter.h"
@@ -678,37 +678,37 @@
 	<string>
 	<cstdlib>
 
-1555274366 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\color_rgb.cpp
+1555280436 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\color_rgb.cpp
 	"color_rgb.h"
 
-1555275300 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\convexhull.cpp
+1555280436 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\convexhull.cpp
 	"convexHull.h"
 	"closest_pair.h"
 	"curve.h"
 
-1555275217 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\curve.h
+1555280436 c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\curve.h
 	<vector>
 	<fstream>
 	"line.h"
 
-1555274366 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\curve.cpp
+1555280436 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\curve.cpp
 	<cmath>
 	"curve.h"
 
-1555274366 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\font.cpp
+1555280436 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\font.cpp
 	"font.h"
 
-1555274366 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\line.cpp
+1555280436 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\line.cpp
 	"line.h"
 
-1555277179 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\main.cpp
+1555280493 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\main.cpp
 	<iostream>
 	"SDL_Plotter.h"
 	"closest_pair.h"
 	"convexHull.h"
 	<unordered_set>
 
-1555274366 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\point.cpp
+1555280436 source:c:\users\steudel.ecs\desktop\potato-lamppost-convex-hull-closest-pair-master\point.cpp
 	"point.h"
 
 1555275475 c:\users\steudel.ecs\desktop\sdl\include\sdl2\sdl.h
