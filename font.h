@@ -66,10 +66,29 @@ public:
      */
     void printNum(SDL_Plotter& g, int c, int r, int num);
 
+    /*
+     * Description: Erases a single letter
+     * Return: none
+     * Precondition: g, c, r, and ltr exist
+     * Postcondition: ltr is no longer displayed by the SDL Plotter
+     */
     void eraseLetter(SDL_Plotter& g, int c, int r, letter ltr);
 
+    /*
+     * Description: Sets the font color
+     * Return: none
+     * Precondition: c exists and has valid rgb values
+     * Postcondition: The font color is set to c
+     */
     void setColor(color_rgb c);
 
+    /*
+     * Description: Changes the font color
+     * Return: none
+     * Precondition: font object exists
+     * Postcondition: The font color is set to the next color in the
+     *    list of possible font colors defined at the top of the class
+     */
     void nextColor();
 
 };
