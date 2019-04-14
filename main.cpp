@@ -18,17 +18,105 @@ const int ROW_MAX = 500;
 const int COL_MAX = 1000;
 
 using namespace std;
+/*
+blackOut
 
+description: function will black out the screen for the main menu.
+return: none
+precondition: g must be a valid sdl_plotter object.
+postcondition: the sdl_plotter window will be blacked out.
+*/
 void blackOut(SDL_Plotter &g);
+/*
+titleGroup
+
+description: function will display the title to the main menu.
+return: none
+precondition: g must be a valid sdl_plotter object.
+postcondition: the sdl_plotter window will have the group name written.
+*/
 void titleGroup(SDL_Plotter &p1);
+/*
+BFCP_option
+
+description: function will display the brute force CP menu option.
+return: none
+precondition: g must be a valid sdl_plotter object.
+postcondition: the sdl_plotter window will show the BFCP option.
+*/
 void BFCP_option(SDL_Plotter &p1);
+/*
+DCCH_option
+
+description: function will display the divide and conquer CH menu option.
+return: none
+precondition: g must be a valid sdl_plotter object.
+postcondition: the sdl_plotter window will show the DCCH option.
+*/
 void DCCH_option(SDL_Plotter &p1);
+/*
+DCCP_option
+
+description: function will display the divide and conquer CP menu option.
+return: none
+precondition: g must be a valid sdl_plotter object.
+postcondition: the sdl_plotter window will show the DCCP option.
+*/
 void DCCP_option(SDL_Plotter &p1);
+/*
+BFCH_option
+
+description: function will display the brute force CH menu option.
+return: none
+precondition: g must be a valid sdl_plotter object.
+postcondition: the sdl_plotter window will show the BFCH option.
+*/
 void BFCH_option(SDL_Plotter &p1);
+/*
+secondTitle
+
+description: function will display the second title screen which
+allows the user to select the data set size for their algorithm
+of choice.
+return: none
+precondition: g must be a valid sdl_plotter object.
+postcondition: the sdl_plotter window will show the second main menu.
+*/
 void secondTitle(SDL_Plotter &p1);
+/*
+displaySizes
+
+description: function will display the sizes of the data sets for
+the user to choose from.
+return: none
+precondition: g must be a valid sdl_plotter object.
+postcondition: the sdl_plotter window will show the data set options
+*/
 void displaySizes(SDL_Plotter &p1);
+/*
+drawMenu
+
+description: function will display the initial menu of the group
+project.
+return: none
+precondition: g must be a valid sdl_plotter object.
+postcondition: the sdl_plotter window will show the main menu.
+*/
 void drawMenu(SDL_Plotter &g);
 
+/*
+main
+
+description: function will have a master loop in which the user is
+shown a main menu and have the choice to select certain algorithms
+to show and data set sizes for each algorithm. Once selected,
+the algorithm will run and will then allow the user to exit back
+to the main menu.
+return: int
+precondition: none
+postcondition: the user will have been allowed to view different
+algorithms for closest pair and convex hull problems.
+*/
 int main(int argc, char* argv[])
 {
     bool userHit = false;
