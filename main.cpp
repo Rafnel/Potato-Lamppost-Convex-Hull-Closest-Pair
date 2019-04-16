@@ -105,6 +105,17 @@ postcondition: the sdl_plotter window will show the main menu.
 void drawMenu(SDL_Plotter &g);
 
 /*
+printLogo
+description: function will display the logo of the group
+project.
+return: none
+precondition: g must be a valid sdl_plotter object, point p must allow enough
+ room for the image to be plotted
+postcondition: the sdl_plotter window will show the logo.
+*/
+void printLogo(SDL_Plotter & win, point p);
+
+/*
 main
 
 description: function will have a master loop in which the user is
@@ -463,9 +474,32 @@ void displaySizes(SDL_Plotter &p1){
 	fo.printNum(p1, startX + 17, startY + 2, 0);
 }
 
+void printLogo(SDL_Plotter & win, point p){
+    ifstream inLogo;
+    // Open the file with the RGB triplets	
+    inLogo.open("lamppostrgb.txt");
+    cout << inLogo.good() << endl;
+
+    int height, width;
+    // Read in the dimensions of the image in pixels
+    inLogo >> height >> width;
+
+    int r,g,b = 0;
+
+    for(int j = 0; j < height; j++){
+        for(int i = 0; i < width; i++){
+            // Read in the triplet of RGB values
+            inLogo >> r >> g >> b;
+            // Plot the pixel
+            win.plotPixel(i + p.getX(), j + p.getY(), r, g, b);
+        }
+    }
+}
+
 void drawMenu(SDL_Plotter &g){
     //fill the screen with black
     blackOut(g);
+    printLogo(g, point(30, 5));
     BFCP_option(g);
     BFCH_option(g);
     DCCP_option(g);
