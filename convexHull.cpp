@@ -207,9 +207,8 @@ bool isRightHandTurn(point p, point m, point n){
         return (n.getY() > p.getY() + slope1 * (n.getX() - p.getX()));
     }
 }
-vector<point> * divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
-g.clear();
-    vector <point> * convexHullPoints = new vector<point>();
+void divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
+    g.clear();
     int minY;
     stack <point> values;
     point prev,mid,next;
@@ -241,10 +240,17 @@ g.clear();
     //Sorting points in ascending order
     sort(points.begin(),points.end(),lessThan);
 
-    //Check to see if convex hull is possible on the points
-    *convexHullPoints=points;
+    //Check to see if convex hull is possible on thee points
     if (points.size()<4){
-        return convexHullPoints;
+        g.clear();
+        plotPoints(g, points);
+        point pFinal(values.top().getX(),g.getRow() - values.top().getY());
+        point pInitial(p0.getX(),g.getRow() - p0.getY());
+        line myline(pInitial, pFinal);
+        myline.setColor(color_rgb(0,0,255));
+        myline.draw(g);
+        drawWholeStack(values,g,points.size());
+        return;
     }
 
     prev = points.at(0);
@@ -276,12 +282,5 @@ g.clear();
     myline.draw(g);
     drawWholeStack(values,g,points.size());
 
-
-    convexHullPoints->clear();
-    while (!values.empty()) {
-       convexHullPoints->push_back(values.top());
-       values.pop();
-    }
-    return convexHullPoints;
 }
 

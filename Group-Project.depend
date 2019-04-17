@@ -460,10 +460,10 @@
 1553369154 source:c:\users\zacsh\desktop\algorithms group project\potato-lamppost-convex-hull-closest-pair\font.cpp
 	"font.h"
 
-1553505766 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\closest_pair.cpp
+1555514091 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\closest_pair.cpp
 	"closest_pair.h"
 
-1553505766 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\closest_pair.h
+1555514091 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\closest_pair.h
 	<vector>
 	"point.h"
 	<cmath>
@@ -476,14 +476,14 @@
 	<time.h>
 	"font.h"
 
-1553505766 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\point.h
+1555514091 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\point.h
 	"color_rgb.h"
 	"SDL_Plotter.h"
 	<ostream>
 
-1553505766 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\color_rgb.h
+1555514091 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\color_rgb.h
 
-1553505766 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\sdl_plotter.h
+1555514091 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\sdl_plotter.h
 	"SDL2/SDL.h"
 	"SDL2/SDL_mixer.h"
 	<string.h>
@@ -492,54 +492,57 @@
 	<string.h>
 	<map>
 
-1553505766 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\line.h
+1555514091 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\line.h
 	"point.h"
 
-1553506378 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\convexhull.h
+1555534131 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\convexhull.h
 	<vector>
 	"point.h"
 	<cmath>
+	"closest_pair.h"
 	<algorithm>
 	<stack>
 
-1553505766 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\font.h
+1555514091 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\font.h
 	<iostream>
 	<fstream>
 	"SDL_Plotter.h"
 	<sstream>
+	"color_rgb.h"
 	<string>
 	<cstdlib>
 
-1553505766 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\color_rgb.cpp
+1555514091 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\color_rgb.cpp
 	"color_rgb.h"
 
-1553506213 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\convexhull.cpp
+1555534131 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\convexhull.cpp
 	"convexHull.h"
 	"closest_pair.h"
 	"curve.h"
 
-1553505766 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\curve.h
+1555514091 c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\curve.h
 	<vector>
 	<fstream>
 	"line.h"
 
-1553505766 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\curve.cpp
+1555514091 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\curve.cpp
 	<cmath>
 	"curve.h"
 
-1553505766 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\font.cpp
+1555514091 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\font.cpp
 	"font.h"
 
-1553505766 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\line.cpp
+1555514091 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\line.cpp
 	"line.h"
 
-1553505766 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\main.cpp
+1555533834 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\main.cpp
 	<iostream>
 	"SDL_Plotter.h"
 	"closest_pair.h"
 	"convexHull.h"
+	<unordered_set>
 
-1553505766 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\point.cpp
+1555514091 source:c:\users\bobby rein\desktop\algorithms\potato-lamppost-convex-hull-closest-pair\point.cpp
 	"point.h"
 
 1554670282 source:c:\users\zacsh\desktop\current group proj\potato-lamppost-convex-hull-closest-pair-master\closest_pair.cpp
