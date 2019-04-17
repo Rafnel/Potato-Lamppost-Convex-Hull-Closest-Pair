@@ -241,7 +241,7 @@ g.clear();
     //Sorting points in ascending order
     sort(points.begin(),points.end(),lessThan);
 
-    //Check to see if convex hull is possible on thee points
+    //Check to see if convex hull is possible on the points
     *convexHullPoints=points;
     if (points.size()<4){
         return convexHullPoints;

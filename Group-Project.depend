@@ -1053,3 +1053,88 @@
 	"begin_code.h"
 	"close_code.h"
 
+1555466677 source:c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\closest_pair.cpp
+	"closest_pair.h"
+
+1555466677 c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\closest_pair.h
+	<vector>
+	"point.h"
+	<cmath>
+	"line.h"
+	<algorithm>
+	<thread>
+	<chrono>
+	<cstdlib>
+	"convexHull.h"
+	<time.h>
+	"font.h"
+
+1555466678 c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\point.h
+	"color_rgb.h"
+	"SDL_Plotter.h"
+	<ostream>
+
+1555466677 c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\color_rgb.h
+
+1555511377 c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\sdl_plotter.h
+	"SDL2/SDL.h"
+	"SDL2/SDL_mixer.h"
+	<string.h>
+	<iostream>
+	<string>
+	<string.h>
+	<map>
+
+1555466678 c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\line.h
+	"point.h"
+
+1555466677 c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\convexhull.h
+	<vector>
+	"point.h"
+	<cmath>
+	"closest_pair.h"
+	<algorithm>
+	<stack>
+
+1555466678 c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\font.h
+	<iostream>
+	<fstream>
+	"SDL_Plotter.h"
+	<sstream>
+	"color_rgb.h"
+	<string>
+	<cstdlib>
+
+1555466677 source:c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\color_rgb.cpp
+	"color_rgb.h"
+
+1555513697 source:c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\convexhull.cpp
+	"convexHull.h"
+	"closest_pair.h"
+	"curve.h"
+
+1555466678 c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\curve.h
+	<vector>
+	<fstream>
+	"line.h"
+
+1555466678 source:c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\curve.cpp
+	<cmath>
+	"curve.h"
+
+1555466678 source:c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\font.cpp
+	"font.h"
+
+1555466678 source:c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\line.cpp
+	"line.h"
+
+1555514940 source:c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\main.cpp
+	<iostream>
+	"SDL_Plotter.h"
+	"closest_pair.h"
+	"convexHull.h"
+	<unordered_set>
+
+1555466678 source:c:\users\zacsh\desktop\potato-lamppost-convex-hull-closest-pair-master\point.cpp
+	"point.h"
+

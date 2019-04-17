@@ -137,17 +137,17 @@ int main(int argc, char* argv[])
 
     drawMenu(g);
 
-    char op;
+    char op, dSize;
     int dataSize;
     while(!g.getQuit()){
 
-        if(g.kbhit() && !userHit){
+        if(!userHit && (op = g.getKey())){
             g.clear();
             points.clear();
+            op = g.getKey();
+            //cout << op << endl;
 
-            if(g.getKey() == 'P' || g.getKey() == 'H' ||
-               g.getKey() == 'C' || g.getKey() == 'V'){
-                op = g.getKey();
+            if(op == 'P' || op == 'H' || op == 'C' || op == 'V'){
                 blackOut(g);
                 secondTitle(g);
                 userHit = true;
@@ -157,21 +157,21 @@ int main(int argc, char* argv[])
             }
 
         }
-        if(g.kbhit() && userHit){
-            if(g.getKey() == 'A' || g.getKey() == 'B' ||
-               g.getKey() == 'C' || g.getKey() == 'D'){
+        else if(g.kbhit() && userHit){
+            dSize = g.getKey();
+            if(dSize == 'A' || dSize == 'B' || dSize == 'C' || dSize == 'D'){
                 userHit = false;
 
-                if(g.getKey() == 'A'){
+                if(dSize == 'A'){
                    dataSize = 10;
                 }
-                if(g.getKey() == 'B'){
+                if(dSize == 'B'){
                    dataSize = 50;
                 }
-                if(g.getKey() == 'C'){
+                if(dSize == 'C'){
                    dataSize = 150;
                 }
-                if(g.getKey() == 'D'){
+                if(dSize == 'D'){
                    dataSize = 500;
                 }
 
@@ -476,9 +476,9 @@ void displaySizes(SDL_Plotter &p1){
 
 void printLogo(SDL_Plotter & win, point p){
     ifstream inLogo;
-    // Open the file with the RGB triplets	
+    // Open the file with the RGB triplets
     inLogo.open("lamppostrgb.txt");
-    cout << inLogo.good() << endl;
+    //cout << inLogo.good() << endl;
 
     int height, width;
     // Read in the dimensions of the image in pixels
