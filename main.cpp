@@ -140,8 +140,8 @@ int main(int argc, char* argv[])
     char op, dSize;
     int dataSize;
     while(!g.getQuit()){
-
-        if(!userHit && (op = g.getKey())){
+        //cout << "main place" << endl;
+        if(!userHit && g.kbhit()){
             g.clear();
             points.clear();
             op = g.getKey();
@@ -157,7 +157,8 @@ int main(int argc, char* argv[])
             }
 
         }
-        else if(g.kbhit() && userHit){
+        else if(userHit && g.kbhit()){
+            //cout << "second title" << endl;
             dSize = g.getKey();
             if(dSize == 'A' || dSize == 'B' || dSize == 'C' || dSize == 'D'){
                 userHit = false;
@@ -205,6 +206,7 @@ int main(int argc, char* argv[])
                 }
 
                 while(!g.kbhit()){}
+                g.getKey();
                 drawMenu(g);
             }
         }
