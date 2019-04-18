@@ -35,7 +35,7 @@ using namespace std;
  *      is returned; the parameter, points, is unchanged after the function call
  *
 */
-vector<point> * brute_ConvexHull(vector<point> points, SDL_Plotter &g);
+vector<point> * brute_ConvexHull(vector<point> points);
 
 /*
  * description: finds the points belonging to the convex hull of a given set
@@ -44,7 +44,7 @@ vector<point> * brute_ConvexHull(vector<point> points, SDL_Plotter &g);
  * precondition: points contains at least 3 distinct points
  * postcondition: the convex hull is properly drawn
 */
-void divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points);
+void divideAndConquer_ConvexHull(vector<point> points);
 
 
 /*
