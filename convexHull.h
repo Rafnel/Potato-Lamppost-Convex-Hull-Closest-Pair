@@ -11,7 +11,7 @@
 
 #ifndef CONVEXHULL_H_INCLUDED
 #define CONVEXHULL_H_INCLUDED
-
+#include <iostream>
 #include <vector>
 #include "point.h"
 #include <cmath>

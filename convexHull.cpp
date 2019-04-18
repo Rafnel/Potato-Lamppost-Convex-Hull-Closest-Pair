@@ -9,14 +9,12 @@
 * Date Last Modified: 04/01/2019
  */
 #include "convexHull.h"
-#include "closest_pair.h"
-#include "curve.h"
 
 bool operator==(point p1, point p2){
     return (p1.getY() == p2.getY() && p1.getX() == p2.getX());
 }
 
-vector<point> * brute_ConvexHull(vector<point> points, SDL_Plotter& g) {
+vector<point> * brute_ConvexHull(vector<point> points) {
     //brute force: compute the line segment between every point and check if
     // all other points are on the same side of that line segment; if so, those
     // two points are in the convex hull
@@ -177,7 +175,7 @@ bool isRightHandTurn(point p, point m, point n){
         return (n.getY() > p.getY() + slope1 * (n.getX() - p.getX()));
     }
 }
-void divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
+void divideAndConquer_ConvexHull(vector<point> points){
     int minY;
     stack <point> values;
     point prev,mid,next;

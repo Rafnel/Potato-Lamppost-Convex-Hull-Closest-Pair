@@ -11,7 +11,6 @@
 #ifndef POINT_H_INCLUDED
 #define POINT_H_INCLUDED
 
-#include "SDL_Plotter.h"
 #include <ostream>
 
 using namespace std;

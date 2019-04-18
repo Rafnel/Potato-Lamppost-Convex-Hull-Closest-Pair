@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
     vector<point> points;
 
 
-    int dataSize;
+    int dataSize=atoi(argv[1]);
 
     srand(time(NULL));
     for(int i = 0; i < dataSize; i++){
