@@ -9,7 +9,6 @@
 * Date Last Modified: 04/14/2019
  */
 #include <iostream>
-#include "closest_pair.h"
 #include "convexHull.h"
 #include <unordered_set>
 
@@ -33,7 +32,6 @@ algorithms for closest pair and convex hull problems.
 */
 int main(int argc, char* argv[])
 {
-    bool userHit = false;
     vector<point> points;
 
 
@@ -46,12 +44,12 @@ int main(int argc, char* argv[])
        point p(x, y);
        points.push_back(p);
     }
-   vector<point> ans = brute_ConvexHull(points, g);
+   vector<point> ans = *(brute_ConvexHull(points));
    cout<<"brute force count: "<<ans.size()<<endl;
    for(int i=0; i<ans.size(); ++i){
        ans.at(i).display(cout);
    }
-   divideAndConquer_ConvexHull(g,points);
+   divideAndConquer_ConvexHull(points);
 
     return 0;
 }

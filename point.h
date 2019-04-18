@@ -16,6 +16,8 @@
 
 using namespace std;
 class point {
+	private:
+		int x,y;
 public:
     /*
     * description: constructor will set default values to the point.
@@ -93,6 +95,7 @@ public:
     * precondition: this's point is of valid values to be plotted.
     * postcondition: the point will be plotted to the screen.
     */
+	
 };
 
 

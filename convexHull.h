@@ -15,7 +15,6 @@
 #include <vector>
 #include "point.h"
 #include <cmath>
-#include "closest_pair.h"
 #include <algorithm>
 #include <stack>
 

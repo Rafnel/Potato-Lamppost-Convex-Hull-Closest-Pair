@@ -208,7 +208,7 @@ void divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
 
     //Check to see if convex hull is possible on thee points
     if (points.size()<4){
-        drawWholeStack(values,points.size());
+        drawWholeStack(values);
         return;
     }
 
@@ -230,8 +230,8 @@ void divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
         values.push(points.at(i));
         prev=mid;
         mid = values.top();
-        //drawWholeStack(values,points.size());//take this line out to remove animation
+        //drawWholeStack(values);//take this line out to remove animation
     }
-    drawWholeStack(values,g,points.size());
+    drawWholeStack(values);
 }
 
