@@ -135,6 +135,8 @@ bool lessThan(point p1, point p2){
 }
 
 void drawWholeStack(stack <point> values){
+ cout<<"dynamic programming count: "<<values.size()<<endl;
+ 
 
     while (!values.empty()) {
     	values.top().display(cout);
