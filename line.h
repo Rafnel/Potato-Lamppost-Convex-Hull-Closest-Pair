@@ -1,8 +1,6 @@
 /*
 * Author: Zac Steudel, Chase Manseth, Gennie Mansi, Reece Kemball-Cook, Bob Rein
 * Assignment Title: CSI 3344 Spring 2019 Group Project
-* Assignment Description: This program uses C++ and the SDL to graphically
-*   represent the runtime characteristics of the brute force closest pair,
 *   D/C closest pair, brute force convex hull, and D/C convex hull algorithms
 * Due Date: 04/02/2019
 * Date Created: 03/06/2019
@@ -25,26 +23,17 @@ public:
 
     /*
      * description: Creates a line() object, which has as data members two
-     *     point objects, a color_rbg object, and a currentColor data member
-     *     for a line that can be plotted by the SDL Plotter
-     * return: none
      * precondition:  Constructor called properly
      * postcondition: Creates line() object with default
-     *     values r = g = b = 0, and x = y = 0 (for both points), and
-     *     currentColor to 0
     */
     line();
 
     /*
      * description: Creates a line() object, which has as data members two
-     *     point objects, a color_rbg object, and a currentColor data member
-     *     for a line that can be plotted by the SDL Plotter
      * return: none
      * precondition:  Constructor called properly
      * postcondition: Creates point() object, initializing its member
      *     variables p1 and p2 to the values passed as arguments to the
-     *     constructor, the color object to have default r = g = b = 0
-     *     values, and currentColor to 0
     */
     line(point p1, point p2);
 
@@ -61,7 +50,6 @@ public:
 
     /*
      * description: Output the x and y coordinates of p1 and p2,
-     *       color, and current data members to the ostream
      * return: void
      * precondition:  line() object exists
      * postcondition: Outputs the x and y coordinates of p1 and p2, the
@@ -69,15 +57,6 @@ public:
      *     each separated by a single space
     */
     void display(ostream&  out);
-
-    /*
-     * description: Plots the line using the SDL Plotter
-     * return: void
-     * precondition:  line() object exists
-     * postcondition: Plots a line from p1 to p2 of the color
-     *     represented by the rgb values stored in the color data member;
-    */
-    void draw(SDL_Plotter& g);
 
      /*
     * description: Changes the x and y coordinate for the p1 data member
@@ -100,16 +79,6 @@ public:
     void setP2(point p){ this -> p2 = p; }
 
     /*
-    * description: Changes the color of the line
-    * return: void
-    * precondition:  line() object exists
-    * postcondition: the value of the color object that is a data member
-    *     of the line  is changed to match that of the argument
-    *     passed to the function
-   */
-    void setColor(color_rgb c){color = c;}
-
-    /*
      * description: Returns the point, p1
      * return: point
      * precondition:  line() object exists
@@ -125,36 +94,9 @@ public:
     */
     point getP2(){return p2;}
 
-    /*
-     * description: Returns the color of the line
-     * return: color_rgb
-     * precondition:  line() object exists
-     * postcondition: returns the color data member for the line object
-    */
-    color_rgb getColor(){return color;}
-
-    /*
-     * description: Changes the color of the line
-     * return: void
-     * precondition:  line() object exists
-     * postcondition: Changes the color of the object to the next color in an
-     *    array of rgb values, updating currentColor accordingly
-    */
-    void nextColor();
-
-    /*
-    * description: Resets the color of the line
-    * return: void
-    * precondition:  line() object exists
-    * postcondition: Changes the color of the object to the default color
-    *     (currently black) that the line object is initialized to, updating c
-    *     currentColor accordingly
-   */
-    void resetColor();
 
 private:
     point p1, p2;
-    color_rgb color;
 
     /*
     * description: Calculates the slope of the line
@@ -178,7 +120,6 @@ private:
     *    function returns false.
    */
     bool intercept(double& b);
-    int currentColor;
 
 };
 

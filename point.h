@@ -11,7 +11,6 @@
 #ifndef POINT_H_INCLUDED
 #define POINT_H_INCLUDED
 
-#include "color_rgb.h"
 #include "SDL_Plotter.h"
 #include <ostream>
 
@@ -66,13 +65,6 @@ public:
     * precondition: c is a valid color.
     * postcondition: color is set to value sent in by user.
     */
-	void setColor(color_rgb c);
-	/*
-    * description: function will return x.
-    * return: int
-    * precondition: none
-    * postcondition: this's x is returned.
-    */
 	int getX();
 	/*
     * description: function will return y.
@@ -86,14 +78,6 @@ public:
     * return: color_rgb
     * precondition: none
     * postcondition: this's color is returned.
-    */
-	color_rgb getColor();
-	/*
-    * description: function set this's point to the point rhs.
-    * return: this's point by reference
-    * precondition: rhs is a valid point.
-    * postcondition: this's point is returned by reference, having been
-    * set to rhs.
     */
 	point& operator=(const point& rhs);
 	/*
@@ -109,11 +93,6 @@ public:
     * precondition: this's point is of valid values to be plotted.
     * postcondition: the point will be plotted to the screen.
     */
-	void draw(SDL_Plotter&);
-
-private:
-	int x, y;
-	color_rgb color;
 };
 
 
