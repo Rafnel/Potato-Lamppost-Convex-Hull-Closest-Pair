@@ -57,5 +57,40 @@ void divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points);
 */
 bool operator==(point p1, point p2);
 
+/*
+ * description: comparator used to sort by a vector by angle
+ * return: bool
+ * precondition: pairs a and b exist
+ * postcondition: returns true a is less than b, false otherwise
+ *
+*/
+bool sortByAngle( pair<point,float> &a, pair<point,float> &b);
 
+/*
+ * description: gives the angle (in radians) that a line (made by the two
+                                                points) and the x-axis make
+ * return: float
+ * precondition: points p1 and p0 exist
+ * postcondition: returns the correct answer in radians
+ *
+*/
+float getRadians(point p1,point p0);
+
+/*
+ * description: draws from each point in the stack and the point before it
+ * return: none
+ * precondition: the stack of points, the plotter, and size exist accurately
+ * postcondition: the whole path is drawn to the screen with the plotter
+ *
+*/
+void drawWholeStack(stack <point> values,SDL_Plotter&g,int size);
+
+/*
+ * description: checks if the turn can be considered a right hand turn
+ * return: bool
+ * precondition: points p,m, and n all exist
+ * postcondition: returns true if the points represent a right hand turn
+ *
+*/
+bool isRightHandTurn(point p, point m, point n);
 #endif // CONVEXHULL_H_INCLUDED

@@ -11,7 +11,9 @@
 #include "convexHull.h"
 #include "closest_pair.h"
 #include "curve.h"
-
+const float CLOSETOZERO = 0.00001;
+const int RUNTIME = 15000;
+const int SMALLEST = 4;
 bool operator==(point p1, point p2){
     return (p1.getY() == p2.getY() && p1.getX() == p2.getX());
 }
@@ -120,46 +122,21 @@ vector<point> * brute_ConvexHull(vector<point> points, SDL_Plotter& g) {
 }
 
 
-point p0;
-bool lessThan(point p1, point p2){
-    //these first two checks are for if one of the points is our p0
-    if(p1.getX()== p0.getX() && p1.getY()==p0.getY()){
-        return true;
-    }
-    if(p2.getX()== p0.getX() && p2.getY()==p0.getY()){
-        return false;
-    }
-    //If p1 == p2
-    if(p1.getX()== p2.getX() && p1.getY()==p2.getY()){
-        return true;
-    }
-    //If on same vertical line
-    if(p1.getX()== p2.getX()){
-      if(p1.getX()>p0.getX()){
-        return (p1.getY()<p2.getY());
-      }else{
-          return (p1.getY()>p2.getY());
-      }
-    }
-    //if on same horizontal line
-    if(p1.getY()== p2.getY()){
-      return (p1.getX()>p2.getX());
-    }
 
-    if (p1.getX()>=p0.getX() && p2.getX()<=p0.getX()){
-        return true;
+bool sortByAngle( pair<point,float> &a, pair<point,float> &b){
+    if(abs(a.second-b.second)<CLOSETOZERO){
+        if(a.first.getX()==b.first.getX()){
+            return (a.first.getY()<b.first.getY());
+        }
+        return (a.first.getX()<b.first.getX());
     }
-    if (p2.getX()>=p0.getX() && p1.getX()<=p0.getX()){
-        return false;
-    }
-    return (
-       (double)(p1.getY()-p0.getY())/(double)(p1.getX()-p0.getX())<
-       (double)(p2.getY()-p0.getY())/(double)(p2.getX()-p0.getX())
-    );
+    return (a.second < b.second);
 }
-
+float getRadians(point p1,point p0){
+    float answer = atan2(p1.getY()-p0.getY(), p1.getX()-p0.getX() );
+    return answer;
+}
 void drawWholeStack(stack <point> values,SDL_Plotter&g,int size){
-
     while (!values.empty()) {
        point p1(values.top().getX(),g.getRow() - values.top().getY());
        values.pop();
@@ -171,7 +148,7 @@ void drawWholeStack(stack <point> values,SDL_Plotter&g,int size){
        }
     }
     g.update();
-    g.Sleep(15000 / size);
+    g.Sleep(RUNTIME / size);
 }
 bool isRightHandTurn(point p, point m, point n){
     double slope1,slope2;
@@ -194,8 +171,7 @@ bool isRightHandTurn(point p, point m, point n){
     }
     slope1=((double)(p.getY() - m.getY()))/((double)(p.getX() - m.getX()));
     slope2=((double)(p.getY() - n.getY()))/((double)(p.getX() - n.getX()));
-    if (abs(slope1-slope2)<0.0000001){
-//        cout<<"small slope"<<endl;
+    if (abs(slope1-slope2)<CLOSETOZERO){
         return true;
     }
     if(n.getY() == p.getY() + slope1 * (n.getX() - p.getX())){
@@ -208,12 +184,13 @@ bool isRightHandTurn(point p, point m, point n){
     }
 }
 void divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
-    g.clear();
-    int minY;
+    int minY,start=2;
     stack <point> values;
-    point prev,mid,next;
+    vector< pair <point,float> > data;
+    point prev,mid,next,p0;
 
     //Plotting points
+    g.clear();
     plotPoints(g, points);
     running(g, false);
     g.update();
@@ -237,11 +214,13 @@ void divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
         }
     }
 
-    //Sorting points in ascending order
-    sort(points.begin(),points.end(),lessThan);
+    for(int i=0;i<points.size();i++){
+        data.push_back(make_pair(points.at(i),getRadians(points.at(i),p0)));
+    }
+    sort(data.begin(), data.end(), sortByAngle);
 
     //Check to see if convex hull is possible on thee points
-    if (points.size()<4){
+    if (data.size()<SMALLEST){
         g.clear();
         plotPoints(g, points);
         point pFinal(values.top().getX(),g.getRow() - values.top().getY());
@@ -253,26 +232,31 @@ void divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
         return;
     }
 
-    prev = points.at(0);
-    mid = points.at(1);
+    prev = p0;
+    mid = data.at(1).first;
+    while(data.at(start).second <CLOSETOZERO){
+        mid = data.at(start).first;
+        start++;
+    }
     values.push(prev);
     values.push(mid);
 
-    for (int i = 2; i < points.size(); i++){
-        next=points.at(i);
+    for (int i = start; i < data.size(); i++){
+        next=data.at(i).first;
         //Loop to pop right hand turns
-        while (isRightHandTurn(prev,mid,next)){
+        while (isRightHandTurn(prev,mid,next)&& values.size()>2){
             values.pop();
             values.pop();
             mid = prev;
             prev= values.top();
             values.push(mid);
         }
-        values.push(points.at(i));
+        values.push(data.at(i).first);
         prev=mid;
         mid = values.top();
         drawWholeStack(values,g,points.size());//take this line out to remove animation
     }
+
     g.clear();
     plotPoints(g, points);
     point pFinal(values.top().getX(),g.getRow() - values.top().getY());
@@ -280,7 +264,6 @@ void divideAndConquer_ConvexHull(SDL_Plotter &g,vector<point> points){
     line myline(pInitial, pFinal);
     myline.setColor(color_rgb(0,0,255));
     myline.draw(g);
-    drawWholeStack(values,g,points.size());
-
+    drawWholeStack(values,g,data.size());
 }
 

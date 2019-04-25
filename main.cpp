@@ -158,7 +158,6 @@ int main(int argc, char* argv[])
 
         }
         else if(userHit && g.kbhit()){
-            //cout << "second title" << endl;
             dSize = g.getKey();
             if(dSize == 'A' || dSize == 'B' || dSize == 'C' || dSize == 'D'){
                 userHit = false;
